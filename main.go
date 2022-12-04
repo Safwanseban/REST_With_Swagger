@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/Safwanseban/REST_With_Swagger/configs"
+	"github.com/Safwanseban/REST_With_Swagger/models"
 	"github.com/Safwanseban/REST_With_Swagger/routes"
 	"github.com/gin-gonic/gin"
 	"github.com/swaggo/files"
@@ -15,8 +16,11 @@ func init() {
 	env = configs.Envload()
 	// fmt.Println(env.Port)
 }
-
+var books []models.Books
 func main() {
+	books = append(books, models.Books{Book_ID: 1, Book_name: "Wings of fire", Author_name: "APJ Abdul-Kalam"})
+	books = append(books, models.Books{Book_ID: 2, Book_name: "The Story of My Experiments with Truth",
+		Author_name: "Mahatma Gandhi"})
 	routes.Routes(R)
 	R.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	R.Run(env.Port)

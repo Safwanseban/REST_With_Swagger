@@ -7,4 +7,6 @@ import (
 
 func Routes(c *gin.Engine) {
 	c.GET("/", controllers.Home)
+	c.POST("/create", controllers.CreateBooks)
+	c.GET("/get", controllers.Getbooks)
 }
